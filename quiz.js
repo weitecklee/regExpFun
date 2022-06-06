@@ -35,7 +35,9 @@ const printOut = (lines, delay = 25, callback) => {
     clearInterval(loader);
     process.stdout.write('\u001b[' + lines.length + 'B')
     process.stdout.write('\n');
-    callback();
+    setTimeout(() => {
+      callback();
+    }, 5000);
   }, (Math.max(...lines.map(q => q.length))) * (delay + 1));
 };
 
@@ -61,7 +63,7 @@ const groovyPrint = (lines, delay = 2) => {
     if (x > max) {
       x = 0;
       process.stdout.write('\u001b[H');
-      process.stdout.write(`\u001b[38;5;${c++}m`); // iterate color
+      process.stdout.write(`\u001b[38;5;${c++}m`);
       if (c > 14) {
         c = 9;
       }
@@ -98,7 +100,7 @@ console.log('1. Replace all occurrences of "@" with " | ".');
 readline.question('\nEnter the line of code to do this:\nmessage = message.replace(', (data) => {
   if (data !== `/@/g, ' | ')`) {
     console.log("\n\u001b[38;5;9m\u001b[1mHmm, you could be right but here's what I was looking for:\u001b[0m")
-    console.log(`\u001b[4mmessage = message.replace(/@/g, ' | ')\u001b[0m`);
+    console.log(`\u001b[38;5;14mmessage = message.replace(/@/g, ' | ')\u001b[0m`);
   } else {
     console.log('\n\u001b[38;5;10m\u001b[1mCorrect!\u001b[0m')
   }
@@ -110,7 +112,7 @@ readline.question('\nEnter the line of code to do this:\nmessage = message.repla
   readline.question('\nEnter the line of code to do this:\nmessage = message.replace(', (data) => {
     if (data !== `/&/g, '(_)')`) {
       console.log("\n\u001b[38;5;9m\u001b[1mHmm, you could be right but here's what I was looking for:\u001b[0m")
-      console.log(`message = message.replace(/&/g, '(_)')`);
+      console.log(`\u001b[38;5;14mmessage = message.replace(/&/g, '(_)')\u001b[0m`);
     } else {
       console.log('\n\u001b[38;5;10m\u001b[1mCorrect!\u001b[0m')
     }
@@ -122,7 +124,7 @@ readline.question('\nEnter the line of code to do this:\nmessage = message.repla
     readline.question('\nEnter the line of code to do this:\nmessage = message.replace(', (data) => {
       if (data !== `/[+=]/g, (match) => (match === '+' ? ' |' : '| '))`) {
         console.log("\n\u001b[38;5;9m\u001b[1mHmm, you could be right but here's what I was looking for:\u001b[0m")
-        console.log(`message = message.replace(/[+=]/g, (match) => (match === '+' ? ' |' : '| '))`);
+        console.log(`\u001b[38;5;14mmessage = message.replace(/[+=]/g, (match) => (match === '+' ? ' |' : '| '))\u001b[0m`);
       } else {
         console.log('\n\u001b[38;5;10m\u001b[1mCorrect!\u001b[0m')
       }
@@ -134,7 +136,7 @@ readline.question('\nEnter the line of code to do this:\nmessage = message.repla
       readline.question('\nEnter the line of code to do this:\nmessage = message.replace(', (data) => {
         if (data !== `/[\\\\\\/]/g, (match) => (match === '\\\\' ? '\\/' : '\\\\'))`) {
           console.log("\n\u001b[38;5;9m\u001b[1mHmm, you could be right but here's what I was looking for:\u001b[0m")
-          console.log(`message = message.replace(/[\\\\\\/]/g, (match) => (match === '\\\\' ? '\\/' : '\\\\'))`);
+          console.log(`\u001b[38;5;14mmessage = message.replace(/[\\\\\\/]/g, (match) => (match === '\\\\' ? '\\/' : '\\\\'))\u001b[0m`);
         } else {
           console.log('\n\u001b[38;5;10m\u001b[1mCorrect!\u001b[0m')
         }
@@ -145,7 +147,7 @@ readline.question('\nEnter the line of code to do this:\nmessage = message.repla
         readline.question('\nEnter the line of code to do this:\nmessage = message.replace(', (data) => {
           if (data !== `/[A-Z]/g, (match) => ('_'.repeat('_ABCDEFG'.indexOf(match))))`) {
             console.log("\n\u001b[38;5;9m\u001b[1mHmm, you could be right but here's what I was looking for:\u001b[0m")
-            console.log(`message = message.replace(/[A-Z]/g, (match) => ('_'.repeat('_ABCDEFG'.indexOf(match))))`);
+            console.log(`\u001b[38;5;14mmessage = message.replace(/[A-Z]/g, (match) => ('_'.repeat('_ABCDEFG'.indexOf(match))))\u001b[0m`);
           } else {
             console.log('\n\u001b[38;5;10m\u001b[1mCorrect!\u001b[0m')
           }
@@ -157,7 +159,7 @@ readline.question('\nEnter the line of code to do this:\nmessage = message.repla
           readline.question('\nEnter the line of code to do this:\nmessage = message.replace(', (data) => {
             if (data !== `/\\d+/g, (match) => (' '.repeat(Number(match))))`) {
               console.log("\n\u001b[38;5;9m\u001b[1mHmm, you could be right but here's what I was looking for:\u001b[0m")
-              console.log(`message = message.replace(/\\d+/g, (match) => (' '.repeat(Number(match))))`);
+              console.log(`\u001b[38;5;14mmessage = message.replace(/\\d+/g, (match) => (' '.repeat(Number(match))))\u001b[0m`);
             } else {
               console.log('\n\u001b[38;5;10m\u001b[1mCorrect!\u001b[0m')
             }

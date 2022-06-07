@@ -18,6 +18,7 @@ const secretCode = [
 
 const printOut = (lines, delay = 25, callback) => {
   let x = 0;
+  process.stdout.write('\u001b[?25l'); // hide cursor
   const loader = setInterval(() => {
     for (let i = 0; i < lines.length; i++) {
       if (x < lines[i].length){
@@ -69,6 +70,9 @@ const groovyPrint = (lines, delay = 2) => {
       }
     }
   }, delay);
+
+
+
 }
 
 const readline = require('readline').createInterface({
@@ -76,6 +80,7 @@ const readline = require('readline').createInterface({
   output: process.stdout,
 });
 
+process.stdout.write('\u001b[?25h'); // show cursor
 console.clear();
 console.log('You have been given this encrypted message:\n')
 for (let i = 0; i < secretCode.length; i++) {
